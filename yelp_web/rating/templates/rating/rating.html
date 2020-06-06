@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+
+<div class="col">
+
+  <h2>Your ratings</h2>
+  <h4>Raitings count: {{count}}</h4>
+  <hr>
+
+  {% if user.is_authenticated %}
+    <div class="col">
+      <table class="table">
+      {% csrf_token %}
+      <tr class="thead-dark">
+        <th>Movie</th>
+        <th>Rating</th>
+      </tr>
+      {%for x in info %}
+           <tr>
+             <td>{{x.movie}}</td>
+             <td>{{x.rating}}</td>
+           </tr>
+      {%endfor%}
+
+      </table>
+    </div>
+
+  {% endif %}
+
+</div>
+
+{% endblock %}

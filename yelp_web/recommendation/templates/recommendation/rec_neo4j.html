@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+
+<div class="col">
+
+
+  <h2>Neo4j Recommendations</h2>
+    <h4>Recommendation count: {{count}}</h4>
+  <hr>
+
+  {% if user.is_authenticated %}
+    <div class="col">
+      <table class="table">
+      {% csrf_token %}
+      <tr class="thead-dark">
+        <th>SVD</th>
+        <th>Recommendation</th>
+        <th>Similarity</th>
+      </tr>
+      {%for x in data|slice:":30" %}
+
+           <tr>
+             <td>{{x.from}}</td>
+             <td>{{x.to}}</td>
+             <td>{{x.similarity}}</td>
+           </tr>
+      {%endfor%}
+
+
+
+      </table>
+    </div>
+
+  {% endif %}
+
+</div>
+
+{% endblock %}
